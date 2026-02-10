@@ -1,0 +1,102 @@
+{
+    "albums": [
+        {
+            "id": 1,
+            "title": "OK Computer",
+            "artist": "Radiohead",
+            "year": 1997,
+            "genre": "Alternative Rock",
+            "cover": "https://picsum.photos/seed/okcomputer/400/400",
+            "avgRating": 4.8,
+            "voteCount": 1240,
+            "descriptors": [
+                "Melancholic",
+                "Futuristic",
+                "Existential"
+            ]
+        },
+        {
+            "id": 2,
+            "title": "To Pimp a Butterfly",
+            "artist": "Kendrick Lamar",
+            "year": 2015,
+            "genre": "Hip Hop",
+            "cover": "https://picsum.photos/seed/tpab/400/400",
+            "avgRating": 4.9,
+            "voteCount": 980,
+            "descriptors": [
+                "Conscious",
+                "Jazz Rap",
+                "Political"
+            ]
+        },
+        {
+            "id": 3,
+            "title": "The Dark Side of the Moon",
+            "artist": "Pink Floyd",
+            "year": 1973,
+            "genre": "Progressive Rock",
+            "cover": "https://picsum.photos/seed/dsotm/400/400",
+            "avgRating": 4.7,
+            "voteCount": 2100,
+            "descriptors": [
+                "Psychedelic",
+                "Philosophical",
+                "Atmospheric"
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Abbey Road",
+            "artist": "The Beatles",
+            "year": 1969,
+            "genre": "Rock",
+            "cover": "https://picsum.photos/seed/abbeyroad/400/400",
+            "avgRating": 4.6,
+            "voteCount": 3500,
+            "descriptors": [
+                "Classic",
+                "Melodic",
+                "Iconic"
+            ]
+        },
+        {
+            "id": 5,
+            "title": "Random Access Memories",
+            "artist": "Daft Punk",
+            "year": 2013,
+            "genre": "Electronic",
+            "cover": "https://picsum.photos/seed/ram/400/400",
+            "avgRating": 4.5,
+            "voteCount": 1500,
+            "descriptors": [
+                "Disco",
+                "Production",
+                "Groovy"
+            ]
+        }
+    ],
+    "reviews": [
+        {
+            "id": 1,
+            "albumId": 1,
+            "user": "ThomFan97",
+            "rating": 5,
+            "comment": "Changed my life. Paranoid Android is a masterpiece."
+        },
+        {
+            "id": 2,
+            "albumId": 2,
+            "user": "KDotStan",
+            "rating": 5,
+            "comment": "The greatest hip hop album of all time."
+        },
+        {
+            "id": 3,
+            "albumId": 3,
+            "user": "ProgLover",
+            "rating": 4,
+            "comment": "Great, but I prefer Wish You Were Here."
+        }
+    ]
+}
