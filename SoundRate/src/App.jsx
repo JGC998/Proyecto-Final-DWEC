@@ -1,33 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Link } from 'react-router-dom';
+
+//Importaciones páginas
+import Home from './pages/Home';
+import Charts from './pages/Charts';
+import AddAlbum from './pages/AddAlbum';
+import AlbumDetail from './components/AlbumDetail';
+
+//Importaciones estilos
+import './styles/App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <header>
         <h1>SoundRate</h1>
       </header>
+
+      {/* NAVEGACIÓN SPA */}
       <nav>
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/charts">Charts</a></li>
-          <li><a href="/favorites">Favorites</a></li>
-          <li><a href="/add">Add</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/charts">Charts</Link></li>
+          <li><Link to="/add">Add</Link></li>
         </ul>
       </nav>
+
       <main>
-        <h1>Puntúe sus albumes favoritos</h1>
-        <p>Encuentre su favorito en la lista de charts y déjelo un voto</p>
+        {/* Aquí se cargan las páginas dinámicamente */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/charts" element={<Charts />} />
+          <Route path="/add" element={<AddAlbum />} />
+          <Route path="/album/:id" element={<AlbumDetail />} />
+        </Routes>
       </main>
+
       <footer>
         <p>© 2026 SoundRate. Todos los derechos reservados.</p>
       </footer>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

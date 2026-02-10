@@ -1,0 +1,90 @@
+.detail-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: white;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #fbbf24;
+    /* Dorado */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.detail-card {
+    display: flex;
+    gap: 2rem;
+    background: #1e1e1e;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.detail-image img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.detail-info h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    line-height: 1.1;
+}
+
+.artist-name {
+    color: #ccc;
+    margin-top: 0.5rem;
+    font-weight: 400;
+}
+
+.meta-data {
+    margin: 1rem 0;
+    display: flex;
+    gap: 10px;
+}
+
+.badge-genre,
+.badge-year {
+    background: #333;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    border: 1px solid #555;
+}
+
+.rating-box {
+    margin: 2rem 0;
+    padding: 1rem;
+    background: #252525;
+    border-left: 5px solid #fbbf24;
+}
+
+.score {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fbbf24;
+    margin-right: 10px;
+}
+
+.votes {
+    color: #888;
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+    .detail-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .meta-data,
+    .rating-box,
+    .tags {
+        justify-content: center;
+    }
+}
