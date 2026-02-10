@@ -1,31 +1,184 @@
+/* Contenedor principal */
 .charts-container {
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2rem 4rem;
+    /* Un poco más de margen lateral */
+    box-sizing: border-box;
+    /* Para que el padding no rompa el ancho del 100% */
 }
 
-.filters {
-    display: flex;
-    gap: 1rem;
+.charts-container h1 {
+    font-size: 2.5rem;
     margin-bottom: 2rem;
-    padding: 1rem;
-    background: #1e1e1e;
-    border-radius: 8px;
+    text-align: center;
+    color: #fff;
+    font-weight: 800;
+}
+
+/* Sección de Filtros */
+.filters {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    gap: 1rem;
+}
+
+.filters label {
+    font-size: 1.1rem;
+    color: #aaa;
 }
 
 .filter-select {
-    padding: 8px 12px;
-    background: #333;
-    color: white;
-    border: 1px solid #555;
-    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: #1e1e1e;
+    color: #fff;
+    border: 1px solid #444;
+    font-size: 1rem;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-/* Reutilizamos el grid de Home, pero aseguramos que funcione aquí */
+.filter-select:hover {
+    border-color: #6366f1;
+    /* Primary Color */
+}
+
+/* Grid de Tarjetas - LA CLAVE */
 .charts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* Ajustamos el minmax a 220px para asegurar que quepan 3 o 4 columnas en pantallas medianas */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 2rem;
+    width: 100%;
+    justify-content: center;
+    /* Centra el grid si sobra espacio */
+}
+
+/* Tarjeta individual */
+.album-card {
+    background: rgba(30, 41, 59, 0.6);
+    /* Semi-transparent background */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    height: 100%;
+    position: relative;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.album-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    border-color: rgba(99, 102, 241, 0.3);
+    /* Slight primary tint on border */
+}
+
+/* Envoltorio de la imagen */
+.cover-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    /* Mantiene la imagen cuadrada perfectamenta */
+}
+
+.cover-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.album-card:hover .cover-wrapper img {
+    transform: scale(1.1);
+}
+
+/* Badge de puntuación */
+.rating-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    color: #fbbf24;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10;
+}
+
+/* Información del álbum */
+.album-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+}
+
+.album-info h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.album-info p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+/* --- RESPONSIVE --- */
+
+/* Pantallas grandes (más de 1400px): Asegurar 4 o 5 columnas */
+@media (min-width: 1400px) {
+    .charts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+/* Pantallas medianas (tablets): Asegurar 2 o 3 columnas */
+@media (max-width: 1024px) {
+    .charts-container {
+        padding: 2rem;
+    }
+
+    .charts-grid {
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+/* Móviles: 1 o 2 columnas dependiendo del ancho */
+@media (max-width: 640px) {
+    .charts-container {
+        padding: 1rem;
+    }
+
+    .charts-grid {
+        /* En móviles muy estrechos, 1 columna, si es ancho (landscape), 2 */
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+
+    .album-info {
+        padding: 1rem;
+    }
 }

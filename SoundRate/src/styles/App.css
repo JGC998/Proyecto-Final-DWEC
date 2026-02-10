@@ -131,11 +131,12 @@ nav a:hover::after {
 /* Main Content Styles */
 main {
   flex: 1;
-  padding: 4rem 2rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: stretch;
+  text-align: left;
+  width: 100%;
   animation: fadeIn 1s ease-out 0.4s backwards;
 }
 
