@@ -15,20 +15,6 @@
       ]
     },
     {
-      "id": "2",
-      "title": "To Pimp a Butterfly",
-      "artist": "Kendrick Lamar",
-      "year": 2015,
-      "genre": "Hip Hop",
-      "cover": "https://picsum.photos/seed/Butterfly/300/300",
-      "avgRating": 4.9,
-      "votes": 890,
-      "descriptors": [
-        "conscious",
-        "political"
-      ]
-    },
-    {
       "id": "3",
       "title": "Abbey Road",
       "artist": "The Beatles",
@@ -73,21 +59,6 @@
       ]
     },
     {
-      "id": "0494",
-      "title": "La paja en la farola",
-      "artist": "Juampa y la Raja",
-      "year": 1998,
-      "genre": "Rock",
-      "cover": "https://picsum.photos/seed/La%20paja%20en%20la%20farola/300/300",
-      "avgRating": 5,
-      "votes": 123462,
-      "descriptors": [
-        "pichancicos",
-        "amor",
-        "melancolía"
-      ]
-    },
-    {
       "id": "0495",
       "title": "La paja en la farola",
       "artist": "Juampa y la Raja",
@@ -115,6 +86,19 @@
         "Rebeldía",
         "agresivo",
         "tabaco"
+      ]
+    },
+    {
+      "id": "e3c7",
+      "title": "The Dark Side of the Moon",
+      "artist": "Pink Floyd",
+      "year": 1973,
+      "genre": "Rock",
+      "cover": "https://picsum.photos/seed/The%20Dark%20Side%20of%20the%20Moon/300/300",
+      "avgRating": 0,
+      "votes": 0,
+      "descriptors": [
+        "Melancolico"
       ]
     }
   ],

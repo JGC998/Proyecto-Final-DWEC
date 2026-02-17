@@ -29,7 +29,7 @@ body {
 }
 
 #root {
-  max-width: 1200px;
+  max-width: none;
   margin: 0 auto;
   padding: 0;
   display: flex;
@@ -135,6 +135,8 @@ main {
   text-align: left;
   width: 100%;
   animation: fadeIn 1s ease-out 0.4s backwards;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 main h1 {

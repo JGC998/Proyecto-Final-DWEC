@@ -1,91 +1,67 @@
+/* --- PEGAR EN src/styles/index.css --- */
 :root {
-  /* --- MODO OSCURO (Por defecto) --- */
-  --bg-body: #121212;
-  --text-main: rgba(255, 255, 255, 0.87);
-  --card-bg: #1e1e1e;
-  --navbar-bg: #000000;
-  --border-color: #333;
-  --accent: #fbbf24;
-  /* Dorado */
-  --button-bg: #1a1a1a;
-  --button-text: #ffffff;
-}
+  --bg-body: #0b0b0f;
+  /* Casi negro, un toque violeta */
+  --text-main: #e0e0e0;
+  --card-bg: #15151a;
+  --navbar-bg: #0b0b0f;
+  --border-color: #333333;
+  --accent: #d4af37;
+  /* ORO METÁLICO */
 
-/* --- MODO CLARO (Activado por clase) --- */
-body.light {
-  --bg-body: #f3f4f6;
-  /* Gris muy clarito */
-  --text-main: #213547;
-  /* Azul oscuro grisáceo */
-  --card-bg: #ffffff;
-  /* Blanco puro */
-  --navbar-bg: #ffffff;
-  --border-color: #e5e7eb;
-  --button-bg: #e5e7eb;
-  /* Botones claritos */
-  --button-text: #213547;
+  --radius: 8px;
+  --font-main: 'Didot', 'Playfair Display', 'Times New Roman', serif;
+  /* Fuentes elegantes */
 }
-
-/* --- ESTILOS GENERALES --- */
 
 body {
   margin: 0;
-  min-width: 320px;
   min-height: 100vh;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-
-  /* APLICANDO LAS VARIABLES */
+  font-family: var(--font-main);
   background-color: var(--bg-body);
   color: var(--text-main);
-
-  /* Transición suave para todo cambio de color */
-  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Degradado sutil de luz cenital */
+  background: radial-gradient(circle at 50% 0%, #1f1f2e 0%, #0b0b0f 70%);
 }
 
-/* Asegura que la App de React ocupe toda la pantalla y herede el color */
-#root {
-  width: 100%;
-  min-height: 100vh;
-  isolation: isolate;
+.album-card {
+  background-color: var(--card-bg) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.album-card:hover {
+  border-color: var(--accent) !important;
+  transform: translateY(-5px);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-  transition: color 0.25s;
+/* Títulos en Oro */
+h1,
+h2,
+h3,
+.logo {
+  color: var(--accent) !important;
+  font-weight: normal;
+  /* Las fuentes serif se ven mejor finas */
+  letter-spacing: 1px;
 }
 
-a:hover {
-  color: #535bf2;
+.rating-badge {
+  background: transparent !important;
+  border: 1px solid var(--accent);
+  color: var(--accent) !important;
 }
 
-/* Botones adaptables al tema */
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s, background-color 0.3s;
-
-  /* Usamos variables aquí también */
-  background-color: var(--button-bg);
-  color: var(--button-text);
+button,
+.add-btn {
+  background: transparent !important;
+  border: 1px solid var(--accent) !important;
+  color: var(--accent) !important;
+  transition: all 0.3s;
 }
 
-button:hover {
-  border-color: var(--accent);
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+button:hover,
+.add-btn:hover {
+  background: var(--accent) !important;
+  color: #000 !important;
 }

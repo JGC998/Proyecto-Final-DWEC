@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Para redirigir al acabar
+import { useNavigate } from 'react-router-dom';
 import '../styles/AddAlbum.css';
 
 export default function AddAlbum() {

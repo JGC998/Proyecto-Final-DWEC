@@ -22,13 +22,11 @@ function App() {
 
   return (
     <>
+      <Navbar />
+
       <header>
         <h1>SoundRate</h1>
       </header>
-
-
-
-      <Navbar />
 
       <main>
         {/* Aquí se cargan las páginas dinámicamente */}

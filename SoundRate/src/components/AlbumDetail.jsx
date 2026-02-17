@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import '../styles/AlbumDetail.css';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useFavorites } from '../context/FavoritesContext';
+
+import '../styles/AlbumDetail.css';
+
 
 export default function AlbumDetail() {
     const { id } = useParams(); // Capturamos el ID de la URL
     const [album, setAlbum] = useState(null);
+    const navigate = useNavigate();
 
     const { addFavorite, removeFavorite, isFavorite } = useFavorites();
 
@@ -17,6 +20,29 @@ export default function AlbumDetail() {
             .then(data => setAlbum(data))
             .catch(err => console.error("Error:", err));
     }, [id]);
+
+    // ... imports y estados igual ...
+
+    const handleDelete = async () => {
+        if (window.confirm("⚠️ ¿Estás seguro de que quieres borrar este álbum para siempre?")) {
+            try {
+                // 1. Lo borramos de la base de datos (Servidor)
+                await fetch(`http://localhost:3000/albums/${id}`, {
+                    method: 'DELETE',
+                });
+
+                // 2. NUEVO: Lo borramos también de la lista de favoritos (Local)
+                // Usamos la función removeFavorite que ya importaste del contexto
+                removeFavorite(id);
+
+                // 3. Redirigimos
+                navigate('/');
+            } catch (error) {
+                console.error("Error al borrar:", error);
+                alert("Hubo un error al intentar borrar el álbum.");
+            }
+        }
+    };
 
     if (!album) return <div className="loading">Cargando detalles...</div>;
 
@@ -41,7 +67,11 @@ export default function AlbumDetail() {
                             >
                                 {isFavorite(album.id) ? '❤️ Quitar de Favoritos' : '🤍 Añadir a Favoritos'}
                             </button>
+
                         )}
+                        <button onClick={handleDelete} className="delete-btn">
+                            🗑️ Delete Album
+                        </button>
                     </div>
 
                     <div className="meta-data">
