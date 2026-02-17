@@ -1,0 +1,45 @@
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    /* Ocupa buena parte de la pantalla */
+    text-align: center;
+    color: white;
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: bold;
+    color: #333;
+    /* Gris muy oscuro de fondo */
+    line-height: 1;
+    text-shadow: 2px 2px 0px #fbbf24;
+    /* Sombra dorada */
+}
+
+h1 {
+    margin-top: 1rem;
+    font-size: 2rem;
+}
+
+p {
+    color: #aaa;
+    margin-bottom: 2rem;
+}
+
+.home-btn {
+    background: #fbbf24;
+    color: black;
+    padding: 12px 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: transform 0.2s;
+}
+
+.home-btn:hover {
+    transform: scale(1.05);
+    background: #f59e0b;
+}

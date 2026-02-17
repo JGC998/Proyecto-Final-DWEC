@@ -1,69 +1,144 @@
 {
-    "albums": [
-        {
-            "id": "1",
-            "title": "OK Computer",
-            "artist": "Radiohead",
-            "year": 1997,
-            "genre": "Art Rock",
-            "cover": "https://picsum.photos/seed/OK%20Computer/300/300",
-            "avgRating": 4.8,
-            "votes": 1240,
-            "descriptors": [
-                "melancholic",
-                "futuristic"
-            ]
-        },
-        {
-            "id": "2",
-            "title": "To Pimp a Butterfly",
-            "artist": "Kendrick Lamar",
-            "year": 2015,
-            "genre": "Hip Hop",
-            "cover": "https://picsum.photos/seed/Butterfly/300/300",
-            "avgRating": 4.9,
-            "votes": 890,
-            "descriptors": [
-                "conscious",
-                "political"
-            ]
-        },
-        {
-            "id": "3",
-            "title": "Abbey Road",
-            "artist": "The Beatles",
-            "year": 1969,
-            "genre": "Rock",
-            "cover": "https://picsum.photos/seed/Abbey/300/300",
-            "avgRating": 4.5,
-            "votes": 2100,
-            "descriptors": [
-                "classic",
-                "psychedelic"
-            ]
-        }
-    ],
-    "genres": [
-        {
-            "id": "g1",
-            "name": "Rock"
-        },
-        {
-            "id": "g2",
-            "name": "Pop"
-        },
-        {
-            "id": "g3",
-            "name": "Hip Hop"
-        },
-        {
-            "id": "g4",
-            "name": "Jazz"
-        },
-        {
-            "id": "g5",
-            "name": "Electronic"
-        }
-    ],
-    "reviews": []
+  "albums": [
+    {
+      "id": "1",
+      "title": "OK Computer",
+      "artist": "Radiohead",
+      "year": 1997,
+      "genre": "Art Rock",
+      "cover": "https://picsum.photos/seed/OK%20Computer/300/300",
+      "avgRating": 4.8,
+      "votes": 1240,
+      "descriptors": [
+        "melancholic",
+        "futuristic"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "To Pimp a Butterfly",
+      "artist": "Kendrick Lamar",
+      "year": 2015,
+      "genre": "Hip Hop",
+      "cover": "https://picsum.photos/seed/Butterfly/300/300",
+      "avgRating": 4.9,
+      "votes": 890,
+      "descriptors": [
+        "conscious",
+        "political"
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Abbey Road",
+      "artist": "The Beatles",
+      "year": 1969,
+      "genre": "Rock",
+      "cover": "https://picsum.photos/seed/Abbey/300/300",
+      "avgRating": 4.5,
+      "votes": 2100,
+      "descriptors": [
+        "classic",
+        "psychedelic"
+      ]
+    },
+    {
+      "id": "0492",
+      "title": "La paja en la farola",
+      "artist": "Juampa y la Raja",
+      "year": 1998,
+      "genre": "Rock",
+      "cover": "https://picsum.photos/seed/La%20paja%20en%20la%20farola/300/300",
+      "avgRating": 5,
+      "votes": 123462,
+      "descriptors": [
+        "pichancicos",
+        "amor",
+        "melancolía"
+      ]
+    },
+    {
+      "id": "0493",
+      "title": "La paja en la farola",
+      "artist": "Juampa y la Raja",
+      "year": 1998,
+      "genre": "Rock",
+      "cover": "https://picsum.photos/seed/La%20paja%20en%20la%20farola/300/300",
+      "avgRating": 5,
+      "votes": 123462,
+      "descriptors": [
+        "pichancicos",
+        "amor",
+        "melancolía"
+      ]
+    },
+    {
+      "id": "0494",
+      "title": "La paja en la farola",
+      "artist": "Juampa y la Raja",
+      "year": 1998,
+      "genre": "Rock",
+      "cover": "https://picsum.photos/seed/La%20paja%20en%20la%20farola/300/300",
+      "avgRating": 5,
+      "votes": 123462,
+      "descriptors": [
+        "pichancicos",
+        "amor",
+        "melancolía"
+      ]
+    },
+    {
+      "id": "0495",
+      "title": "La paja en la farola",
+      "artist": "Juampa y la Raja",
+      "year": 1998,
+      "genre": "Rock",
+      "cover": "https://picsum.photos/seed/La%20paja%20en%20la%20farola/300/300",
+      "avgRating": 5,
+      "votes": 123462,
+      "descriptors": [
+        "pichancicos",
+        "amor",
+        "melancolía"
+      ]
+    },
+    {
+      "id": "239b",
+      "title": "Volumen brutal",
+      "artist": "Barón Rojo",
+      "year": 1982,
+      "genre": "Rock",
+      "cover": "https://picsum.photos/seed/Volumen%20brutal/300/300",
+      "avgRating": 0,
+      "votes": 0,
+      "descriptors": [
+        "Rebeldía",
+        "agresivo",
+        "tabaco"
+      ]
+    }
+  ],
+  "genres": [
+    {
+      "id": "g1",
+      "name": "Rock"
+    },
+    {
+      "id": "g2",
+      "name": "Pop"
+    },
+    {
+      "id": "g3",
+      "name": "Hip Hop"
+    },
+    {
+      "id": "g4",
+      "name": "Jazz"
+    },
+    {
+      "id": "g5",
+      "name": "Electronic"
+    }
+  ],
+  "reviews": []
 }

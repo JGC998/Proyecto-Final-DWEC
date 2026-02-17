@@ -57,22 +57,25 @@
     /* Centra el grid si sobra espacio */
 }
 
-/* Tarjeta individual */
 .album-card {
-    background: rgba(30, 41, 59, 0.6);
-    /* Semi-transparent background */
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
+    /* ANTES TENÍAS: background: #2a2a2a; */
+    /* CAMBIALO POR: */
+    background: var(--card-bg);
+
+    /* ANTES TENÍAS: color: white; */
+    /* CAMBIALO POR: */
+    color: var(--text-main);
+
+    border: 1px solid var(--border-color);
+    /* Opcional, queda bien en modo claro */
+    border-radius: 8px;
     overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
     text-decoration: none;
-    color: white;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
     height: 100%;
     position: relative;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .album-card:hover {
@@ -132,7 +135,7 @@
     margin: 0;
     font-size: 1.1rem;
     font-weight: 700;
-    color: #f1f5f9;
+    color: var(--text-main);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -180,5 +183,70 @@
 
     .album-info {
         padding: 1rem;
+    }
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    /* Para que baje en móvil */
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #1e1e1e;
+    border-radius: 8px;
+    align-items: flex-end;
+    /* Alinea abajo para que labels cuadren */
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter-group label {
+    font-size: 0.9rem;
+    color: #ccc;
+    font-weight: bold;
+}
+
+.filter-select {
+    padding: 10px 15px;
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 6px;
+    cursor: pointer;
+    min-width: 150px;
+}
+
+/* El grupo del buscador se estira para llenar el hueco */
+.search-group {
+    flex-grow: 1;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 15px;
+    background: #333;
+    border: 1px solid #555;
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #fbbf24;
+    /* Dorado al escribir */
+}
+
+/* Responsive para móvil */
+@media (max-width: 600px) {
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
     }
 }

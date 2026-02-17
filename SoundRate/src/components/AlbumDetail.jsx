@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import '../styles/AlbumDetail.css';
+import { useFavorites } from '../context/FavoritesContext';
 
 export default function AlbumDetail() {
     const { id } = useParams(); // Capturamos el ID de la URL
     const [album, setAlbum] = useState(null);
+
+    const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+
 
     useEffect(() => {
         // Pedimos a la API solo este disco específico
@@ -28,6 +32,17 @@ export default function AlbumDetail() {
                 <div className="detail-info">
                     <h1>{album.title}</h1>
                     <h2 className="artist-name">{album.artist}</h2>
+
+                    <div className="actions">
+                        {album && ( // Verificamos que album existe
+                            <button
+                                onClick={() => isFavorite(album.id) ? removeFavorite(album.id) : addFavorite(album)}
+                                className={`fav-btn ${isFavorite(album.id) ? 'active' : ''}`}
+                            >
+                                {isFavorite(album.id) ? '❤️ Quitar de Favoritos' : '🤍 Añadir a Favoritos'}
+                            </button>
+                        )}
+                    </div>
 
                     <div className="meta-data">
                         <span className="badge-genre">{album.genre}</span>

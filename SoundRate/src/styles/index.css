@@ -1,32 +1,52 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* --- MODO OSCURO (Por defecto) --- */
+  --bg-body: #121212;
+  --text-main: rgba(255, 255, 255, 0.87);
+  --card-bg: #1e1e1e;
+  --navbar-bg: #000000;
+  --border-color: #333;
+  --accent: #fbbf24;
+  /* Dorado */
+  --button-bg: #1a1a1a;
+  --button-text: #ffffff;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* --- MODO CLARO (Activado por clase) --- */
+body.light {
+  --bg-body: #f3f4f6;
+  /* Gris muy clarito */
+  --text-main: #213547;
+  /* Azul oscuro grisáceo */
+  --card-bg: #ffffff;
+  /* Blanco puro */
+  --navbar-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --button-bg: #e5e7eb;
+  /* Botones claritos */
+  --button-text: #213547;
 }
 
-a:hover {
-  color: #535bf2;
-}
+/* --- ESTILOS GENERALES --- */
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  /* APLICANDO LAS VARIABLES */
+  background-color: var(--bg-body);
+  color: var(--text-main);
+
+  /* Transición suave para todo cambio de color */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Asegura que la App de React ocupe toda la pantalla y herede el color */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  isolation: isolate;
 }
 
 h1 {
@@ -34,6 +54,18 @@ h1 {
   line-height: 1.1;
 }
 
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+  transition: color 0.25s;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+/* Botones adaptables al tema */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -41,31 +73,19 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.3s;
+
+  /* Usamos variables aquí también */
+  background-color: var(--button-bg);
+  color: var(--button-text);
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: var(--accent);
 }
 
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }

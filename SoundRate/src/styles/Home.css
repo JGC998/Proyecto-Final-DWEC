@@ -3,6 +3,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
+    /* IMPORTANTE: Sin background-color aquí para que se vea el del body */
 }
 
 .hero {
@@ -17,19 +18,25 @@
 }
 
 .album-card {
-    background: #2a2a2a;
+    /* CORREGIDO: Usamos variables para que cambie de color */
+    background: var(--card-bg);
+    color: var(--text-main);
+
+    /* Añadimos un borde sutil para que se distinga bien en modo claro */
+    border: 1px solid var(--border-color);
+
     border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
     text-decoration: none;
-    color: white;
     display: block;
     position: relative;
-    /* Necesario para el badge */
 }
 
 .album-card:hover {
     transform: translateY(-5px);
+    /* Sombra suave al pasar el ratón */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .cover-wrapper img {
@@ -43,14 +50,29 @@
     top: 10px;
     right: 10px;
     background: rgba(0, 0, 0, 0.8);
+    /* Esto lo dejamos oscuro siempre para que se lea sobre la foto */
     color: #fbbf24;
     padding: 4px 8px;
     border-radius: 4px;
     font-weight: bold;
+    backdrop-filter: blur(4px);
 }
 
 .album-info {
     padding: 1rem;
+}
+
+.album-info h3 {
+    margin: 0 0 5px 0;
+    color: var(--text-main);
+    /* Asegura que el título se lea */
+}
+
+.album-info p {
+    margin: 0;
+    color: var(--text-main);
+    opacity: 0.7;
+    /* Lo hacemos un poco más transparente en lugar de gris fijo */
 }
 
 .tags {
@@ -61,8 +83,12 @@
 
 .tag {
     font-size: 0.75rem;
-    background: #444;
+
+    /* CORREGIDO: Usamos variables para las etiquetas */
+    background: var(--border-color);
+    color: var(--text-main);
+
     padding: 2px 6px;
     border-radius: 4px;
-    color: #ccc;
+    opacity: 0.9;
 }

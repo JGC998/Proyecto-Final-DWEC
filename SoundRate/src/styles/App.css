@@ -1,36 +1,31 @@
-/* Global Styles & Variables */
+/* Limpiamos las variables que chocan y mantenemos solo las de diseño/animación */
 :root {
   --primary-color: #6366f1;
   /* Indigo */
-  --secondary-color: #a855f7;
-  /* Purple */
   --accent-color: #ec4899;
   /* Pink */
-  --bg-dark: #0f172a;
-  --bg-card: rgba(30, 41, 59, 0.7);
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
+
+  /* Variables para efectos de cristal que se adapten */
   --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+
+  /* Fuente global */
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
+/* Ajustes globales */
 * {
   box-sizing: border-box;
 }
 
+/* IMPORTANTE: Hemos borrado el background-color y el gradiente fijo del body */
+/* Ahora el body es transparente y deja ver el color definido en index.css */
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-primary);
   font-family: var(--font-family);
   margin: 0;
   min-height: 100vh;
-  /* Complex rich gradient background */
-  background: radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.15), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.15), transparent 25%);
-  background-attachment: fixed;
   overflow-x: hidden;
+  /* El color de texto base viene de index.css */
 }
 
 #root {
@@ -46,7 +41,6 @@ body {
 header {
   padding: 3rem 1rem 1rem;
   text-align: center;
-  /* Fade In Down Animation */
   animation: fadeInDown 0.8s ease-out;
 }
 
@@ -54,13 +48,13 @@ header h1 {
   font-size: 4rem;
   margin: 0;
   font-weight: 800;
-  /* Gradient Text */
+  /* El gradiente del texto se ve bien en blanco y negro, lo dejamos */
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   letter-spacing: -2px;
-  filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.4));
+  filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.2));
   transition: transform 0.3s ease;
 }
 
@@ -68,21 +62,20 @@ header h1:hover {
   transform: scale(1.02);
 }
 
-/* Navigation Styles */
+/* Navigation Styles - IMPORTANTE: Usamos la variable de fondo del Navbar */
 nav {
   margin: 1.5rem auto;
-  /* Glassmorphism */
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
+  /* Usamos la variable definida en index.css para que cambie de color */
+  background-color: var(--navbar-bg);
+  border: 1px solid var(--border-color);
+
   padding: 1rem 2.5rem;
   border-radius: 9999px;
-  /* Pill shape */
   box-shadow: var(--glass-shadow);
   width: fit-content;
   z-index: 100;
   animation: fadeInUp 0.8s ease-out 0.2s backwards;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 nav ul {
@@ -95,7 +88,8 @@ nav ul {
 }
 
 nav a {
-  color: var(--text-secondary);
+  /* Color de texto dinámico */
+  color: var(--text-main);
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
@@ -104,13 +98,16 @@ nav a {
   display: block;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  opacity: 0.8;
 }
 
 nav a:hover {
-  color: var(--text-primary);
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  color: var(--accent);
+  /* Usamos la variable de acento */
 }
 
+/* La línea decorativa debajo del link */
 nav a::after {
   content: '';
   position: absolute;
@@ -118,7 +115,7 @@ nav a::after {
   left: 50%;
   width: 0;
   height: 2px;
-  background: var(--accent-color);
+  background: var(--accent);
   transition: width 0.3s ease, left 0.3s ease;
   transform: translateX(-50%);
   border-radius: 2px;
@@ -143,13 +140,17 @@ main {
 main h1 {
   font-size: 3rem;
   margin-bottom: 1.5rem;
-  color: var(--text-primary);
+  color: var(--text-main);
+  /* Dinámico */
   font-weight: 700;
   line-height: 1.2;
 }
 
 main p {
-  color: var(--text-secondary);
+  color: var(--text-main);
+  /* Dinámico */
+  opacity: 0.8;
+  /* Para que parezca texto secundario */
   font-size: 1.25rem;
   max-width: 600px;
   line-height: 1.7;
@@ -161,14 +162,24 @@ main p {
 footer {
   text-align: center;
   padding: 2rem;
-  color: var(--text-secondary);
-  font-size: 0.875rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.03);
-  margin-top: auto;
+  color: var(--text-main);
   opacity: 0.6;
+  font-size: 0.875rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: auto;
 }
 
-/* Keyframes */
+.fav-count {
+  background: #e11d48;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+/* Keyframes (Sin cambios) */
 @keyframes fadeIn {
   from {
     opacity: 0;
