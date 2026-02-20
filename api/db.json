@@ -44,51 +44,6 @@
       ]
     },
     {
-      "id": "0493",
-      "title": "La paja en la farola",
-      "artist": "Juampa y la Raja",
-      "year": 1998,
-      "genre": "Rock",
-      "cover": "https://picsum.photos/seed/La%20paja%20en%20la%20farola/300/300",
-      "avgRating": 5,
-      "votes": 123462,
-      "descriptors": [
-        "pichancicos",
-        "amor",
-        "melancolía"
-      ]
-    },
-    {
-      "id": "0495",
-      "title": "La paja en la farola",
-      "artist": "Juampa y la Raja",
-      "year": 1998,
-      "genre": "Rock",
-      "cover": "https://picsum.photos/seed/La%20paja%20en%20la%20farola/300/300",
-      "avgRating": 5,
-      "votes": 123462,
-      "descriptors": [
-        "pichancicos",
-        "amor",
-        "melancolía"
-      ]
-    },
-    {
-      "id": "239b",
-      "title": "Volumen brutal",
-      "artist": "Barón Rojo",
-      "year": 1982,
-      "genre": "Rock",
-      "cover": "https://picsum.photos/seed/Volumen%20brutal/300/300",
-      "avgRating": 0,
-      "votes": 0,
-      "descriptors": [
-        "Rebeldía",
-        "agresivo",
-        "tabaco"
-      ]
-    },
-    {
       "id": "e3c7",
       "title": "The Dark Side of the Moon",
       "artist": "Pink Floyd",
@@ -99,6 +54,21 @@
       "votes": 0,
       "descriptors": [
         "Melancolico"
+      ]
+    },
+    {
+      "id": "8559",
+      "title": "El oso y la granja",
+      "artist": "La granja",
+      "year": 1976,
+      "genre": "Electronic",
+      "cover": "https://picsum.photos/seed/El%20oso%20y%20la%20granja/300/300",
+      "avgRating": 0,
+      "votes": 0,
+      "descriptors": [
+        "Locura",
+        "html",
+        "ensamblador"
       ]
     }
   ],
@@ -124,5 +94,72 @@
       "name": "Electronic"
     }
   ],
-  "reviews": []
+  "reviews": [
+    {
+      "id": "rev1",
+      "userId": "u1",
+      "albumId": "1",
+      "rating": 5,
+      "text": "¡Obra maestra!"
+    },
+    {
+      "id": "rev2",
+      "userId": "u2",
+      "albumId": "1",
+      "rating": 4,
+      "text": "Muy bueno, pero un poco largo."
+    },
+    {
+      "id": "3471",
+      "userId": "u1",
+      "userName": "Alex_Rock",
+      "albumId": "0492",
+      "rating": 1,
+      "text": "Sin comentarios"
+    },
+    {
+      "id": "2546",
+      "userId": "u1",
+      "userName": "Alex_Rock",
+      "albumId": "3",
+      "rating": 2,
+      "text": "Tremenda basura, ojala se hubieran drogado mas"
+    },
+    {
+      "id": "8daf",
+      "userId": "u1",
+      "userName": "Alex_Rock",
+      "albumId": "8559",
+      "rating": 3,
+      "text": "Ojala salieran mas osos"
+    },
+    {
+      "id": "b446",
+      "userId": "7a45",
+      "userName": "Juan",
+      "albumId": "8559",
+      "rating": 4,
+      "text": "asdfasdf"
+    }
+  ],
+  "users": [
+    {
+      "id": "u1",
+      "name": "Alex_Rock",
+      "password": "123",
+      "avatar": "🎸"
+    },
+    {
+      "id": "u2",
+      "name": "Sam_Pop",
+      "password": "123",
+      "avatar": "🎧"
+    },
+    {
+      "id": "7a45",
+      "name": "Juan",
+      "password": "juan",
+      "avatar": "👤"
+    }
+  ]
 }
