@@ -1,35 +1,41 @@
-import { createContext, useState, useContext, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
+import { useUser } from './UserContext'; // Importamos el usuario actual
 
-// 1. Crear el Contexto
 const FavoritesContext = createContext();
 
-// 2. Crear el Proveedor (El componente que envolverá tu App)
 export const FavoritesProvider = ({ children }) => {
-    // Intentamos leer de localStorage para no perderlos al recargar
-    const [favorites, setFavorites] = useState(() => {
-        const saved = localStorage.getItem('myFavorites');
-        return saved ? JSON.parse(saved) : [];
-    });
+    const { currentUser } = useUser();
+    const [favorites, setFavorites] = useState([]);
 
-    // Cada vez que cambien los favoritos, los guardamos en el navegador
+    // Cuando inicias sesión o cambias de cuenta, cargamos SUS favoritos específicos
     useEffect(() => {
-        localStorage.setItem('myFavorites', JSON.stringify(favorites));
-    }, [favorites]);
+        if (currentUser) {
+            const savedFavs = localStorage.getItem(`favs_${currentUser.id}`);
+            setFavorites(savedFavs ? JSON.parse(savedFavs) : []);
+        } else {
+            setFavorites([]); // Si cierras sesión, limpiamos la lista visual
+        }
+    }, [currentUser]);
 
-    // Funciones para añadir y quitar
-    const addFavorite = (album) => {
-        // Evitamos duplicados
-        if (!favorites.some(fav => fav.id === album.id)) {
-            setFavorites([...favorites, album]);
+    // Función auxiliar para guardar en el estado y en el localStorage a la vez
+    const saveFavorites = (newFavorites) => {
+        setFavorites(newFavorites);
+        if (currentUser) {
+            localStorage.setItem(`favs_${currentUser.id}`, JSON.stringify(newFavorites));
         }
     };
 
+    const addFavorite = (album) => {
+        if (!currentUser) return alert("Debes iniciar sesión para guardar favoritos");
+        saveFavorites([...favorites, album]);
+    };
+
     const removeFavorite = (id) => {
-        setFavorites(favorites.filter(fav => fav.id !== id));
+        saveFavorites(favorites.filter(a => a.id !== id));
     };
 
     const isFavorite = (id) => {
-        return favorites.some(fav => fav.id === id);
+        return favorites.some(a => a.id === id);
     };
 
     return (
@@ -39,5 +45,4 @@ export const FavoritesProvider = ({ children }) => {
     );
 };
 
-// 3. Hook personalizado para usarlo fácil en cualquier componente
 export const useFavorites = () => useContext(FavoritesContext);

@@ -1,29 +1,36 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// Nota: Puedes mover los estilos de la tarjeta a un archivo AlbumCard.css si quieres ser muy estricto, 
-// o dejarlos en App.css/Charts.css si son compartidos.
 
 export default function AlbumCard({ album }) {
-    return (
-        <Link to={`/album/${album.id}`} className="album-card">
-            <div className="cover-wrapper">
-                <img src={album.cover} alt={album.title} />
-                {album.avgRating && (
-                    <span className="rating-badge">★ {album.avgRating}</span>
-                )}
-            </div>
-            <div className="album-info">
-                <h3>{album.title}</h3>
-                <p>{album.artist}</p>
+    const [avgRating, setAvgRating] = useState(0);
+    const [reviewCount, setReviewCount] = useState(0);
 
-                {/* Si quieres mostrar etiquetas, opcional */}
-                {album.descriptors && (
-                    <div className="tags" style={{ marginTop: '5px' }}>
-                        {album.descriptors.slice(0, 2).map(tag => (
-                            <span key={tag} className="tag">{tag}</span>
-                        ))}
-                    </div>
-                )}
+    // Cada tarjeta hace su propia petición para buscar SUS reseñas
+    useEffect(() => {
+        fetch(`http://localhost:3000/reviews?albumId=${album.id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.length > 0) {
+                    const total = data.reduce((acc, rev) => acc + rev.rating, 0);
+                    setAvgRating((total / data.length).toFixed(1));
+                    setReviewCount(data.length);
+                }
+            })
+            .catch(err => console.error("Error cargando notas:", err));
+    }, [album.id]);
+
+    return (
+        <div className="album-card" style={{ border: '1px solid #333', padding: '10px', borderRadius: '8px', textAlign: 'center' }}>
+            <Link to={`/album/${album.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <img src={album.cover} alt={album.title} style={{ width: '100%', borderRadius: '4px' }} />
+                <h3 style={{ margin: '10px 0 5px 0' }}>{album.title}</h3>
+                <p style={{ margin: '0 0 10px 0', color: 'gray' }}>{album.artist}</p>
+            </Link>
+
+            {/* AQUÍ MOSTRAMOS LAS ESTRELLAS EN EL CATÁLOGO */}
+            <div style={{ fontWeight: 'bold', color: 'var(--accent)' }}>
+                {reviewCount > 0 ? `⭐ ${avgRating} (${reviewCount})` : '⭐ --'}
             </div>
-        </Link>
+        </div>
     );
 }

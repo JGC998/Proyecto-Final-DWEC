@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Charts.css';
 import AlbumCard from '../components/AlbumCard';
 
+
 export default function Charts() {
     const [albums, setAlbums] = useState([]);
     const [genres, setGenres] = useState([]); // Para llenar el select dinámicamente
@@ -40,7 +41,7 @@ export default function Charts() {
 
     return (
         <div className="charts-container">
-            <h1>Explorar Catálogo</h1>
+            <h1>ÁLbumes puntuados</h1>
 
             {/* ZONA DE FILTROS Y BÚSQUEDA */}
             <div className="filters">
@@ -70,6 +71,7 @@ export default function Charts() {
                     />
                 </div>
             </div>
+
 
             {/* 4. CAMBIO: Ahora mapeamos 'filteredAlbums' en vez de 'albums' */}
             <div className="charts-grid">

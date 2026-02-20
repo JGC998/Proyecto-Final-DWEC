@@ -7,6 +7,7 @@ import Charts from './pages/Charts';
 import AddAlbum from './pages/AddAlbum';
 import Favorites from './pages/Favorites';
 import NotFound from './pages/NotFound';
+import Login from './pages/Login';
 
 
 //Importaciones componentes
@@ -36,6 +37,7 @@ function App() {
           <Route path="/add" element={<AddAlbum />} />
           <Route path="/album/:id" element={<AlbumDetail />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/login" element={<Login />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
