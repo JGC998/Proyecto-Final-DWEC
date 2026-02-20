@@ -19,6 +19,9 @@ export default function AlbumDetail() {
     const [rating, setRating] = useState(5);
     const [comment, setComment] = useState('');
 
+    const [isEditing, setIsEditing] = useState(false);
+    const [editingId, setEditingId] = useState(null);
+
     useEffect(() => {
         // 1. Pedimos los detalles del álbum
         fetch(`http://localhost:3000/albums/${id}`)
@@ -45,6 +48,38 @@ export default function AlbumDetail() {
                 console.error("Error al borrar:", error);
                 alert("Hubo un error al intentar borrar el álbum.");
             }
+        }
+    };
+
+    const startEditing = (myRev) => {
+        setRating(myRev.rating);
+        setComment(myRev.text);
+        setEditingId(myRev.id);
+        setIsEditing(true);
+    };
+
+    const handleUpdateReview = async (e) => {
+        e.preventDefault();
+        const updatedReview = {
+            ...reviews.find(r => r.id === editingId),
+            rating: Number(rating),
+            text: comment
+        };
+
+        try {
+            const res = await fetch(`http://localhost:3000/reviews/${editingId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedReview)
+            });
+            const saved = await res.json();
+            // Actualizamos la reseña editada en la pantalla
+            setReviews(reviews.map(r => r.id === editingId ? saved : r));
+            setIsEditing(false);
+            setComment('');
+            setRating(5);
+        } catch (error) {
+            console.error("Error al editar la reseña:", error);
         }
     };
 
@@ -162,30 +197,38 @@ export default function AlbumDetail() {
                         )}
                     </div>
 
-                    {/* NUEVO: FORMULARIO DE VALORACIÓN (Control de sesión y voto único) */}
+                    {/* FORMULARIO DE VALORACIÓN (Control de sesión, voto único y edición) */}
                     <div className="review-form-section">
                         {currentUser ? (
-                            reviews.some(rev => rev.userId === currentUser.id) ? (
-                                <div style={{ marginTop: '2rem', padding: '15px', background: 'rgba(0, 255, 136, 0.1)', borderRadius: '8px', border: '1px solid var(--accent, #00ff88)' }}>
-                                    <h4 style={{ margin: '0 0 10px 0', color: 'var(--accent, #00ff88)' }}>✅ Ya has valorado este disco</h4>
+                            reviews.some(rev => rev.userId === currentUser.id) && !isEditing ? (
+                                <div style={{ marginTop: '2rem', padding: '15px', background: 'rgba(0, 255, 136, 0.1)', borderRadius: '8px', border: '1px solid var(--accent)' }}>
+                                    <h4 style={{ margin: '0 0 10px 0', color: 'var(--accent)' }}>✅ Ya has valorado este disco</h4>
                                     {reviews.filter(r => r.userId === currentUser.id).map(myRev => (
                                         <div key={myRev.id}>
                                             <p style={{ fontStyle: 'italic', margin: '0 0 10px 0' }}>
                                                 Le diste un <strong>{myRev.rating}/5</strong>: "{myRev.text}"
                                             </p>
-                                            <button
-                                                onClick={() => handleDeleteReview(myRev.id)}
-                                                style={{ background: '#ff4757', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer' }}
-                                            >
-                                                🗑️ Borrar mi reseña
-                                            </button>
+                                            <div style={{ display: 'flex', gap: '10px' }}>
+                                                <button
+                                                    onClick={() => startEditing(myRev)}
+                                                    style={{ background: 'var(--accent)', color: 'var(--bg-body)', border: 'none', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}
+                                                >
+                                                    ✏️ Editar
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDeleteReview(myRev.id)}
+                                                    style={{ background: '#ff4757', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer' }}
+                                                >
+                                                    🗑️ Borrar
+                                                </button>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
                             ) : (
-                                <form onSubmit={handleSubmitReview} style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                                    <h4>Deja tu valoración, {currentUser.name}</h4>
-                                    <select value={rating} onChange={(e) => setRating(e.target.value)} style={{ padding: '8px', borderRadius: '4px', background: 'var(--bg-secondary, #222)', color: 'inherit' }}>
+                                <form onSubmit={isEditing ? handleUpdateReview : handleSubmitReview} style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                    <h4>{isEditing ? 'Edita tu valoración' : `Deja tu valoración, ${currentUser.name}`}</h4>
+                                    <select value={rating} onChange={(e) => setRating(e.target.value)} style={{ padding: '8px', borderRadius: '4px', background: 'var(--bg-secondary)', color: 'inherit', border: '1px solid var(--border-color)' }}>
                                         <option value="5">5 - Obra maestra ⭐⭐⭐⭐⭐</option>
                                         <option value="4">4 - Muy bueno ⭐⭐⭐⭐</option>
                                         <option value="3">3 - Decente ⭐⭐⭐</option>
@@ -198,11 +241,22 @@ export default function AlbumDetail() {
                                         onChange={(e) => setComment(e.target.value)}
                                         required
                                         rows="3"
-                                        style={{ padding: '10px', borderRadius: '4px', background: 'var(--bg-secondary, #222)', color: 'inherit', border: '1px solid #444' }}
+                                        style={{ padding: '10px', borderRadius: '4px', background: 'var(--bg-secondary)', color: 'inherit', border: '1px solid var(--border-color)' }}
                                     />
-                                    <button type="submit" className="submit-btn" style={{ width: 'fit-content', padding: '10px 20px', cursor: 'pointer' }}>
-                                        Enviar Reseña
-                                    </button>
+                                    <div style={{ display: 'flex', gap: '10px' }}>
+                                        <button type="submit" className="submit-btn" style={{ padding: '10px 20px', cursor: 'pointer' }}>
+                                            {isEditing ? 'Guardar Cambios' : 'Enviar Reseña'}
+                                        </button>
+                                        {isEditing && (
+                                            <button
+                                                type="button"
+                                                onClick={() => { setIsEditing(false); setComment(''); setRating(5); }}
+                                                style={{ padding: '10px 20px', cursor: 'pointer', background: 'transparent', color: 'var(--text-main)', border: '1px solid var(--border-color)', borderRadius: '4px' }}
+                                            >
+                                                Cancelar
+                                            </button>
+                                        )}
+                                    </div>
                                 </form>
                             )
                         ) : (

@@ -32,8 +32,11 @@ export default function Navbar() {
             <div className="nav-right">
                 {/* CORRECCIÓN: Estructura limpia para el Login/Logout */}
                 {currentUser ? (
-                    <div className="user-profile" onClick={logout} title="Cerrar sesión" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', fontWeight: 'bold' }}>
-                        <span>{currentUser.avatar} {currentUser.name} (Salir)</span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <Link to="/profile" className="user-profile" title="Ver mi perfil" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '5px', fontWeight: 'bold' }}>
+                            <span>{currentUser.avatar} {currentUser.name}</span>
+                        </Link>
+                        <button onClick={logout} style={{ background: 'transparent', border: 'none', color: 'var(--text-main)', cursor: 'pointer', fontSize: '0.9rem' }}>(Salir)</button>
                     </div>
                 ) : (
                     <Link to="/login" className="nav-item">Iniciar Sesión</Link>

@@ -140,6 +140,30 @@
       "albumId": "8559",
       "rating": 4,
       "text": "asdfasdf"
+    },
+    {
+      "id": "847f",
+      "userId": "7a45",
+      "userName": "Juan",
+      "albumId": "1",
+      "rating": 3,
+      "text": "Decente"
+    },
+    {
+      "id": "aa42",
+      "userId": "7a45",
+      "userName": "Juan",
+      "albumId": "e3c7",
+      "rating": 5,
+      "text": "Obra maestra"
+    },
+    {
+      "id": "b225",
+      "userId": "7a45",
+      "userName": "Juan",
+      "albumId": "3",
+      "rating": 1,
+      "text": "asdfasdfasdfasdf"
     }
   ],
   "users": [

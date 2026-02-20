@@ -3,74 +3,109 @@
     width: 100%;
     margin: 0 auto;
     padding: 2rem 4rem;
-    /* Un poco más de margen lateral */
     box-sizing: border-box;
-    /* Para que el padding no rompa el ancho del 100% */
 }
 
 .charts-container h1 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     text-align: center;
-    color: #fff;
+    color: var(--accent);
+    /* Cambiado al color de acento */
     font-weight: 800;
 }
 
-/* Sección de Filtros */
+/* --- SECCIÓN DE FILTROS Y BUSCADOR --- */
 .filters {
-    margin-bottom: 3rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    /* Variable dinámica */
+    border: 1px solid var(--border-color);
+    /* Borde dinámico */
+    border-radius: 8px;
+    align-items: flex-end;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
-.filters label {
-    font-size: 1.1rem;
-    color: #aaa;
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter-group label {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    /* Variable dinámica */
+    font-weight: bold;
+    opacity: 0.8;
+    /* Un poco más suave que el texto principal */
 }
 
 .filter-select {
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    background: #1e1e1e;
-    color: #fff;
-    border: 1px solid #444;
-    font-size: 1rem;
+    padding: 10px 15px;
+    background: var(--bg-body);
+    /* Variable dinámica */
+    color: var(--text-main);
+    /* Variable dinámica */
+    border: 1px solid var(--border-color);
+    /* Variable dinámica */
+    border-radius: 6px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    min-width: 150px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
 .filter-select:hover {
-    border-color: #6366f1;
-    /* Primary Color */
+    border-color: var(--accent);
 }
 
-/* Grid de Tarjetas - LA CLAVE */
+/* El grupo del buscador se estira para llenar el hueco */
+.search-group {
+    flex-grow: 1;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 15px;
+    background: var(--bg-body);
+    /* Variable dinámica */
+    color: var(--text-main);
+    /* Variable dinámica */
+    border: 1px solid var(--border-color);
+    /* Variable dinámica */
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 5px var(--accent);
+}
+
+/* --- GRID DE TARJETAS --- */
 .charts-grid {
     display: grid;
-    /* Ajustamos el minmax a 220px para asegurar que quepan 3 o 4 columnas en pantallas medianas */
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 2rem;
     width: 100%;
     justify-content: center;
-    /* Centra el grid si sobra espacio */
 }
 
 .album-card {
-    /* ANTES TENÍAS: background: #2a2a2a; */
-    /* CAMBIALO POR: */
     background: var(--card-bg);
-
-    /* ANTES TENÍAS: color: white; */
-    /* CAMBIALO POR: */
     color: var(--text-main);
-
     border: 1px solid var(--border-color);
-    /* Opcional, queda bien en modo claro */
     border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.3s, background-color 0.3s;
     text-decoration: none;
     display: flex;
     flex-direction: column;
@@ -80,9 +115,8 @@
 
 .album-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
-    border-color: rgba(99, 102, 241, 0.3);
-    /* Slight primary tint on border */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    border-color: var(--accent);
 }
 
 /* Envoltorio de la imagen */
@@ -91,7 +125,6 @@
     width: 100%;
     overflow: hidden;
     aspect-ratio: 1 / 1;
-    /* Mantiene la imagen cuadrada perfectamenta */
 }
 
 .cover-wrapper img {
@@ -110,15 +143,16 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(4px);
-    color: #fbbf24;
+    background: var(--bg-body);
+    /* Adaptado al tema */
+    color: var(--accent);
+    /* Adaptado al tema */
     padding: 6px 10px;
     border-radius: 20px;
     font-weight: 700;
     font-size: 0.9rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--accent);
     z-index: 10;
 }
 
@@ -128,7 +162,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
 }
 
 .album-info h3 {
@@ -143,21 +176,21 @@
 
 .album-info p {
     margin: 0;
-    color: #94a3b8;
+    color: var(--text-main);
+    opacity: 0.7;
+    /* Suavizamos un poco el nombre del artista */
     font-size: 0.95rem;
     font-weight: 400;
 }
 
 /* --- RESPONSIVE --- */
 
-/* Pantallas grandes (más de 1400px): Asegurar 4 o 5 columnas */
 @media (min-width: 1400px) {
     .charts-grid {
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     }
 }
 
-/* Pantallas medianas (tablets): Asegurar 2 o 3 columnas */
 @media (max-width: 1024px) {
     .charts-container {
         padding: 2rem;
@@ -169,14 +202,12 @@
     }
 }
 
-/* Móviles: 1 o 2 columnas dependiendo del ancho */
 @media (max-width: 640px) {
     .charts-container {
         padding: 1rem;
     }
 
     .charts-grid {
-        /* En móviles muy estrechos, 1 columna, si es ancho (landscape), 2 */
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
         gap: 1rem;
     }
@@ -186,64 +217,6 @@
     }
 }
 
-.filters {
-    display: flex;
-    flex-wrap: wrap;
-    /* Para que baje en móvil */
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: #1e1e1e;
-    border-radius: 8px;
-    align-items: flex-end;
-    /* Alinea abajo para que labels cuadren */
-}
-
-.filter-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.filter-group label {
-    font-size: 0.9rem;
-    color: #ccc;
-    font-weight: bold;
-}
-
-.filter-select {
-    padding: 10px 15px;
-    background: #333;
-    color: white;
-    border: 1px solid #555;
-    border-radius: 6px;
-    cursor: pointer;
-    min-width: 150px;
-}
-
-/* El grupo del buscador se estira para llenar el hueco */
-.search-group {
-    flex-grow: 1;
-}
-
-.search-input {
-    width: 100%;
-    padding: 10px 15px;
-    background: #333;
-    border: 1px solid #555;
-    border-radius: 6px;
-    color: white;
-    font-size: 1rem;
-    transition: border-color 0.2s;
-}
-
-.search-input:focus {
-    outline: none;
-    border-color: #fbbf24;
-    /* Dorado al escribir */
-}
-
-/* Responsive para móvil */
 @media (max-width: 600px) {
     .filters {
         flex-direction: column;

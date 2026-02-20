@@ -8,6 +8,7 @@ import AddAlbum from './pages/AddAlbum';
 import Favorites from './pages/Favorites';
 import NotFound from './pages/NotFound';
 import Login from './pages/Login';
+import Profile from './pages/Profile';
 
 
 //Importaciones componentes
@@ -38,6 +39,7 @@ function App() {
           <Route path="/album/:id" element={<AlbumDetail />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

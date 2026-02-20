@@ -28,6 +28,38 @@ body {
   /* El color de texto base viene de index.css */
 }
 
+/* Variables para el tema OSCURO (Gris oscuro/negro con letras verdes) */
+body.dark {
+  --bg-main: #121212;
+  /* Fondo casi negro */
+  --bg-secondary: #1e1e1e;
+  /* Tarjetas un poco más claras */
+  --text-main: #00ff1a;
+  /* Letras verde brillante */
+  --navbar-bg: rgba(18, 18, 18, 0.95);
+  --border-color: #333333;
+  --accent: #00cc6a;
+  /* Un verde un poco más oscuro para botones/links */
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* Variables para el tema CLARO (Pastel suave con letras azul oscuro) */
+body.light {
+  --bg-main: #fdfbf7;
+  /* Fondo beige pastel MUY suave, no blanco puro */
+  --bg-secondary: #f0ebe1;
+  /* Tarjetas un beige un pelín más oscuro */
+  --text-main: #1a2b4c;
+  /* Letras en azul marino profundo, relaja la vista */
+  --navbar-bg: rgba(253, 251, 247, 0.95);
+  --border-color: #d1c8b8;
+  --accent: #3b5998;
+  /* Azul más vivo para detalles o links */
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
 #root {
   max-width: none;
   margin: 0 auto;

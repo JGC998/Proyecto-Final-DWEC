@@ -1,33 +1,50 @@
 /* --- PEGAR EN src/styles/index.css --- */
-:root {
-  --bg-body: #0b0b0f;
-  /* Casi negro, un toque violeta */
-  --text-main: #e0e0e0;
-  --card-bg: #15151a;
-  --navbar-bg: #0b0b0f;
+
+/* 1. Variables para el tema OSCURO */
+body.dark {
+  --bg-body: #121212;
+  --card-bg: #1e1e1e;
+  --text-main: #00ff88;
+  --navbar-bg: rgba(18, 18, 18, 0.95);
   --border-color: #333333;
-  --accent: #d4af37;
-  /* ORO METÁLICO */
+  --accent: #00cc6a;
 
   --radius: 8px;
   --font-main: 'Didot', 'Playfair Display', 'Times New Roman', serif;
-  /* Fuentes elegantes */
 }
 
+/* 2. Variables para el tema CLARO */
+body.light {
+  --bg-body: #fdfbf7;
+  --card-bg: #f0ebe1;
+  --text-main: #1a2b4c;
+  --navbar-bg: rgba(253, 251, 247, 0.95);
+  --border-color: #d1c8b8;
+  --accent: #3b5998;
+
+  --radius: 8px;
+  --font-main: 'Didot', 'Playfair Display', 'Times New Roman', serif;
+}
+
+/* 3. El BODY: Quitamos el radial-gradient y usamos las variables */
 body {
   margin: 0;
   min-height: 100vh;
   font-family: var(--font-main);
-  background-color: var(--bg-body);
-  color: var(--text-main);
-  /* Degradado sutil de luz cenital */
-  background: radial-gradient(circle at 50% 0%, #1f1f2e 0%, #0b0b0f 70%);
+  background-color: var(--bg-body) !important;
+  background-image: none !important;
+  /* ¡ESTO ES VITAL PARA QUITAR EL DEGRADADO FIJO! */
+  color: var(--text-main) !important;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
+/* 4. Estilos de las tarjetas y botones usando variables dinámicas */
 .album-card {
   background-color: var(--card-bg) !important;
-  border: 1px solid rgba(255, 255, 255, 0.05) !important;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  /* Sombra más suave para que quede bien en claro y oscuro */
+  transition: border-color 0.3s, transform 0.3s;
 }
 
 .album-card:hover {
@@ -35,14 +52,13 @@ body {
   transform: translateY(-5px);
 }
 
-/* Títulos en Oro */
+/* Títulos con color dinámico (Acento) */
 h1,
 h2,
 h3,
 .logo {
   color: var(--accent) !important;
   font-weight: normal;
-  /* Las fuentes serif se ven mejor finas */
   letter-spacing: 1px;
 }
 
@@ -58,10 +74,12 @@ button,
   border: 1px solid var(--accent) !important;
   color: var(--accent) !important;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 button:hover,
 .add-btn:hover {
   background: var(--accent) !important;
-  color: #000 !important;
+  color: var(--bg-body) !important;
+  /* Texto del botón contrasta con el fondo activo */
 }
