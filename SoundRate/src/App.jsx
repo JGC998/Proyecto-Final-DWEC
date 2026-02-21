@@ -1,55 +1,62 @@
-import { Routes, Route, Link } from 'react-router-dom';
-import { useFavorites } from './context/FavoritesContext'
+import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //Importaciones páginas
-import Home from './pages/Home';
-import Charts from './pages/Charts';
-import AddAlbum from './pages/AddAlbum';
-import Favorites from './pages/Favorites';
-import NotFound from './pages/NotFound';
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-
+import Inicio from './pages/Inicio';
+import Catalogo from './pages/Catalogo';
+import AgregarAlbum from './pages/AgregarAlbum';
+import Favoritos from './pages/Favoritos';
+import PaginaNoEncontrada from './pages/PaginaNoEncontrada';
+import InicioSesion from './pages/InicioSesion';
+import Perfil from './pages/Perfil';
 
 //Importaciones componentes
-import Navbar from './components/Navbar';
-import AlbumDetail from './components/AlbumDetail';
-
-
+import BarraNavegacion from './components/BarraNavegacion';
+import DetalleAlbum from './components/DetalleAlbum';
 
 //Importaciones estilos
 import './styles/App.css';
 
-function App() {
+function Aplicacion() {
 
   return (
     <>
-      <Navbar />
+      <BarraNavegacion />
 
       <header>
         <h1>SoundRate</h1>
       </header>
 
       <main>
-        {/* Aquí se cargan las páginas dinámicamente */}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/charts" element={<Charts />} />
-          <Route path="/add" element={<AddAlbum />} />
-          <Route path="/album/:id" element={<AlbumDetail />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-
-          <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<Inicio />} />
+          <Route path="/charts" element={<Catalogo />} />
+          <Route path="/add" element={<AgregarAlbum />} />
+          <Route path="/album/:id" element={<DetalleAlbum />} />
+          <Route path="/favorites" element={<Favoritos />} />
+          <Route path="/login" element={<InicioSesion />} />
+          <Route path="/profile" element={<Perfil />} />
+          <Route path="*" element={<PaginaNoEncontrada />} />
         </Routes>
       </main>
 
       <footer>
         <p>© 2026 SoundRate. Todos los derechos reservados.</p>
       </footer>
+
+      {/* Contenedor global de notificaciones Toastify */}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        theme="dark"
+      />
     </>
   );
 }
 
-export default App;
+export default Aplicacion;

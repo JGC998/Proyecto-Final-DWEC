@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import '../styles/NotFound.css'; // Ahora creamos el estilo
+import '../styles/PaginaNoEncontrada.css';
 
-export default function NotFound() {
+export default function PaginaNoEncontrada() {
     return (
         <div className="not-found-container">
             <div className="error-code">404</div>

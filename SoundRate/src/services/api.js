@@ -1,12 +1,12 @@
-const BASE_URL = 'http://localhost:3000';
+const URL_BASE = 'http://localhost:3000';
 
-export const getGenres = async () => {
-    const res = await fetch(`${BASE_URL}/genres`);
+export const obtenerGeneros = async () => {
+    const res = await fetch(`${URL_BASE}/genres`);
     return res.json();
 };
 
-export const createAlbum = async (album) => {
-    const res = await fetch(`${BASE_URL}/albums`, {
+export const crearAlbum = async (album) => {
+    const res = await fetch(`${URL_BASE}/albums`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(album)
@@ -14,21 +14,20 @@ export const createAlbum = async (album) => {
     return res.json();
 };
 
-// Añade esto a tu src/services/api.js
-export const getAlbums = async (genre = '') => {
-    const url = genre
-        ? `${BASE_URL}/albums?genre=${genre}`
-        : `${BASE_URL}/albums`;
+export const obtenerAlbumes = async (genero = '') => {
+    const url = genero
+        ? `${URL_BASE}/albums?genre=${genero}`
+        : `${URL_BASE}/albums`;
     const res = await fetch(url);
     return res.json();
 };
 
-export const getFeaturedAlbums = async (limit = 4) => {
-    const res = await fetch(`${BASE_URL}/albums?_limit=${limit}`);
+export const obtenerAlbumesDestacados = async (limite = 4) => {
+    const res = await fetch(`${URL_BASE}/albums?_limit=${limite}`);
     return res.json();
 };
 
-export const getUserReviews = async (userId) => {
-    const res = await fetch(`${BASE_URL}/reviews?userId=${userId}`);
+export const obtenerResenasUsuario = async (idUsuario) => {
+    const res = await fetch(`${URL_BASE}/reviews?userId=${idUsuario}`);
     return res.json();
 };

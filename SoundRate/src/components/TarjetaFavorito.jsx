@@ -1,8 +1,16 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
-export default function FavoriteAlbumCard({ album, onRemove }) {
+export default function TarjetaFavorito({ album, alQuitar }) {
     return (
-        <div className="album-card">
+        <motion.div
+            className="album-card"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3 }}
+            whileHover={{ scale: 1.02 }}
+        >
             <Link to={`/album/${album.id}`} className="cover-wrapper">
                 <img src={album.cover} alt={album.title} />
             </Link>
@@ -12,7 +20,7 @@ export default function FavoriteAlbumCard({ album, onRemove }) {
                 <p style={{ opacity: 0.7 }}>{album.artist}</p>
 
                 <button
-                    onClick={() => onRemove(album.id)}
+                    onClick={() => alQuitar(album.id)}
                     style={{
                         marginTop: '10px',
                         padding: '8px 10px',
@@ -30,6 +38,6 @@ export default function FavoriteAlbumCard({ album, onRemove }) {
                     Quitar de la lista
                 </button>
             </div>
-        </div>
+        </motion.div>
     );
 }

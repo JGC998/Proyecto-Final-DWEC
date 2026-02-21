@@ -1,45 +1,45 @@
 import { useState } from 'react';
 
-export default function AlbumForm({ genres, onSubmit }) {
-    const [formData, setFormData] = useState({
+export default function AlbumForm({ generos, alEnviar }) {
+    const [datoFormulario, setDatoFormulario] = useState({
         title: '', artist: '', year: '', genre: '', descriptors: ''
     });
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    const manejarCambio = (e) => {
+        setDatoFormulario({ ...datoFormulario, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const manejarEnvio = (e) => {
         e.preventDefault();
-        onSubmit(formData); // Le pasa los datos a la página
+        alEnviar(datoFormulario); // Le pasa los datos a la página
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={manejarEnvio}>
             <div className="form-group">
                 <label>Título del Álbum</label>
-                <input type="text" name="title" required onChange={handleChange} />
+                <input type="text" name="title" required onChange={manejarCambio} />
             </div>
             <div className="form-group">
                 <label>Artista</label>
-                <input type="text" name="artist" required onChange={handleChange} />
+                <input type="text" name="artist" required onChange={manejarCambio} />
             </div>
             <div className="form-group">
                 <label>Año de lanzamiento</label>
-                <input type="number" name="year" required onChange={handleChange} />
+                <input type="number" name="year" required onChange={manejarCambio} />
             </div>
             <div className="form-group">
                 <label>Género</label>
-                <select name="genre" required onChange={handleChange} defaultValue="">
+                <select name="genre" required onChange={manejarCambio} defaultValue="">
                     <option value="" disabled>Selecciona un género</option>
-                    {genres.map(g => (
+                    {generos.map(g => (
                         <option key={g.id} value={g.name}>{g.name}</option>
                     ))}
                 </select>
             </div>
             <div className="form-group">
                 <label>Descriptores (separados por coma)</label>
-                <input type="text" name="descriptors" placeholder="Ej: melancólico, rápido" onChange={handleChange} />
+                <input type="text" name="descriptors" placeholder="Ej: melancólico, rápido" onChange={manejarCambio} />
             </div>
             <button type="submit" className="submit-btn">Publicar Disco</button>
         </form>

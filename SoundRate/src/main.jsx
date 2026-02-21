@@ -2,21 +2,21 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom';
 import './styles/index.css'
-import App from './App.jsx'
-import { FavoritesProvider } from './context/FavoritesContext.jsx';
-import { ThemeProvider } from './context/ThemeContext.jsx';
-import { UserProvider } from './context/UserContext.jsx';
+import Aplicacion from './App.jsx'
+import { ProveedorFavoritos } from './context/ContextoFavoritos.jsx';
+import { ProveedorTema } from './context/ContextoTema.jsx';
+import { ProveedorUsuario } from './context/ContextoUsuario.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ThemeProvider>
-      <UserProvider>
-        <FavoritesProvider>
+    <ProveedorTema>
+      <ProveedorUsuario>
+        <ProveedorFavoritos>
           <BrowserRouter>
-            <App />
+            <Aplicacion />
           </BrowserRouter>
-        </FavoritesProvider>
-      </UserProvider>
-    </ThemeProvider>
+        </ProveedorFavoritos>
+      </ProveedorUsuario>
+    </ProveedorTema>
   </StrictMode>,
 )

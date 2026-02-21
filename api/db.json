@@ -112,6 +112,18 @@
         "Melodico",
         "Otoño"
       ]
+    },
+    {
+      "id": "cccf",
+      "title": "Stadium Arcadium",
+      "artist": "Red Hot Chili Peppers",
+      "year": 2002,
+      "genre": "Rock",
+      "cover": "https://picsum.photos/seed/Stadium%20Arcadium/300/300",
+      "descriptors": [
+        "Alegre",
+        "vivaz"
+      ]
     }
   ],
   "genres": [

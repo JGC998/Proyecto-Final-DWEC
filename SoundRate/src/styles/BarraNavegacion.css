@@ -153,10 +153,36 @@
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
+    .navbar {
+        padding: 0 12px;
+        height: 60px;
+        flex-wrap: wrap;
+    }
 
     .nav-center,
+    .vertical-separator {
+        display: none;
+    }
+
     .nav-links li:not(:first-child) {
         display: none;
-        /* Ocultamos buscador y links secundarios en móvil */
+    }
+
+    .add-btn-rym {
+        display: none;
+    }
+
+    .nav-right {
+        gap: 10px;
+    }
+
+    .logo-rym {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links {
+        display: none;
     }
 }

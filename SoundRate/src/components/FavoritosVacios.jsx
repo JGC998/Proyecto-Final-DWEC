@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function EmptyFavorites() {
+export default function FavoritosVacios() {
     return (
         <div style={{ textAlign: 'center', marginTop: '50px', color: 'var(--text-main)' }}>
             <h2>No tienes favoritos aún.</h2>
