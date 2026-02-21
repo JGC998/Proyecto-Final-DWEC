@@ -131,12 +131,24 @@
 }
 
 .theme-toggle-rym {
-    background: none;
-    border: none;
-    color: var(--text-main);
-    font-size: 1.1rem;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 1.2rem;
     cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle-rym:hover {
+    background: var(--accent);
+    color: var(--bg-body);
 }
 
 /* RESPONSIVE */

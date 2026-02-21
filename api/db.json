@@ -70,6 +70,48 @@
         "html",
         "ensamblador"
       ]
+    },
+    {
+      "id": "9212",
+      "title": "Cathaline",
+      "artist": "Cathaline",
+      "year": 2026,
+      "genre": "Rock",
+      "cover": "https://picsum.photos/seed/Cathaline/300/300",
+      "avgRating": 0,
+      "votes": 0,
+      "descriptors": [
+        "metal",
+        "melodico",
+        "actual"
+      ]
+    },
+    {
+      "id": "bf73",
+      "title": "Los dias intactos",
+      "artist": "Manolo García",
+      "year": 2011,
+      "genre": "Pop",
+      "cover": "https://picsum.photos/seed/Los%20dias%20intactos/300/300",
+      "avgRating": 0,
+      "votes": 0,
+      "descriptors": [
+        "Tranquilidad",
+        "Esperanza"
+      ]
+    },
+    {
+      "id": "4e97",
+      "title": "Rubber Soul",
+      "artist": "The Beatles",
+      "year": 1965,
+      "genre": "Pop",
+      "cover": "https://picsum.photos/seed/Rubber%20Soul/300/300",
+      "descriptors": [
+        "Amor",
+        "Melodico",
+        "Otoño"
+      ]
     }
   ],
   "genres": [
@@ -164,6 +206,22 @@
       "albumId": "3",
       "rating": 1,
       "text": "asdfasdfasdfasdf"
+    },
+    {
+      "id": "3409",
+      "userId": "e1ea",
+      "userName": "Paco",
+      "albumId": "9212",
+      "rating": 5,
+      "text": "El puto mejor album de la historia"
+    },
+    {
+      "id": "d017",
+      "userId": "7a45",
+      "userName": "Juan",
+      "albumId": "4e97",
+      "rating": 5,
+      "text": "Una autentica obra maestra"
     }
   ],
   "users": [
@@ -183,6 +241,12 @@
       "id": "7a45",
       "name": "Juan",
       "password": "juan",
+      "avatar": "👤"
+    },
+    {
+      "id": "e1ea",
+      "name": "Paco",
+      "password": "Paco",
       "avatar": "👤"
     }
   ]
