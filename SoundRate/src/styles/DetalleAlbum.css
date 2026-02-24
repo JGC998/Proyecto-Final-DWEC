@@ -39,6 +39,10 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+.detail-image {
+    flex-shrink: 0;
+}
+
 .detail-info {
     display: flex;
     flex-direction: column;
@@ -138,15 +142,46 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    .detail-container {
+        padding: 1rem;
+    }
+
     .detail-card {
         flex-direction: column;
         text-align: center;
         align-items: center;
+        padding: 1.25rem;
+        gap: 1.25rem;
+    }
+
+    .detail-image img {
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    .detail-info h1 {
+        font-size: 1.8rem;
+    }
+
+    .artist-name {
+        font-size: 1.2rem;
     }
 
     .meta-data,
     .rating-box,
     .actions {
         justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail-info h1 {
+        font-size: 1.4rem;
+    }
+
+    .score {
+        font-size: 2rem;
     }
 }

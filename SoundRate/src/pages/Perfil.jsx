@@ -3,6 +3,7 @@ import { useUsuario } from '../context/ContextoUsuario';
 import { useFavoritos } from '../context/ContextoFavoritos';
 import { obtenerAlbumes, obtenerResenasUsuario } from '../services/api';
 import GraficoPerfil from '../components/GraficoPerfil';
+import '../styles/Perfil.css';
 
 export default function Perfil() {
     const { usuarioActual } = useUsuario();
@@ -111,16 +112,16 @@ export default function Perfil() {
     }
 
     return (
-        <div style={{ padding: '2rem', color: 'var(--text-main)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-                <span style={{ fontSize: '4rem' }}>{usuarioActual.avatar}</span>
+        <div className="perfil-container">
+            <div className="perfil-header">
+                <span className="perfil-avatar">{usuarioActual.avatar}</span>
                 <h1>Perfil de {usuarioActual.name}</h1>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-                <div>
+            <div className="perfil-grid">
+                <div className="perfil-section">
                     <h3>Mis Discos Favoritos ({favoritos.length})</h3>
-                    <ul style={{ marginBottom: '2rem' }}>
+                    <ul>
                         {listaFavoritos}
                     </ul>
 
@@ -130,7 +131,7 @@ export default function Perfil() {
                     </ul>
                 </div>
 
-                <div>
+                <div className="perfil-section">
                     <h3>Géneros mejor valorados</h3>
                     <GraficoPerfil datoGrafico={datoGrafico} />
                 </div>

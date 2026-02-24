@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFavoritos } from '../context/ContextoFavoritos';
 import { useTema } from '../context/ContextoTema';
@@ -8,22 +9,20 @@ export default function BarraNavegacion() {
     const { favoritos } = useFavoritos();
     const { tema, alternarTema } = useTema();
     const { usuarioActual, cerrarSesion } = useUsuario();
+    const [menuAbierto, setMenuAbierto] = useState(false);
 
-    // Preparamos el icono del tema según el modo actual
-    let iconoTema;
-    if (tema === 'dark') {
-        iconoTema = '☀';
-    } else {
-        iconoTema = '☾';
-    }
+    const cerrarMenu = () => setMenuAbierto(false);
 
-    // Preparamos el contador de favoritos (solo se muestra si hay alguno)
+    // Icono del tema
+    const iconoTema = tema === 'dark' ? '☀' : '☾';
+
+    // Contador de favoritos
     let contadorFavoritos = null;
     if (favoritos.length > 0) {
         contadorFavoritos = <span className="fav-counter">{favoritos.length}</span>;
     }
 
-    // Preparamos la sección del usuario (logueado o no)
+    // Sección del usuario (desktop)
     let seccionUsuario;
     if (usuarioActual) {
         seccionUsuario = (
@@ -59,7 +58,7 @@ export default function BarraNavegacion() {
                 </ul>
             </div>
 
-            {/* SECCIÓN DERECHA: Usuario y Acciones */}
+            {/* SECCIÓN DERECHA: Usuario y Acciones (desktop) */}
             <div className="nav-right">
                 {seccionUsuario}
 
@@ -68,7 +67,34 @@ export default function BarraNavegacion() {
                 <button onClick={alternarTema} className="theme-toggle-rym" title="Cambiar tema">
                     {iconoTema}
                 </button>
+
+                {/* Botón hamburguesa — solo visible en móvil */}
+                <button
+                    className="hamburger-btn"
+                    onClick={() => setMenuAbierto(!menuAbierto)}
+                    aria-label="Abrir menú"
+                    aria-expanded={menuAbierto}
+                >
+                    {menuAbierto ? '✕' : '☰'}
+                </button>
             </div>
+
+            {/* Panel de menú desplegable — solo en móvil */}
+            <nav className={`mobile-menu${menuAbierto ? ' open' : ''}`}>
+                <Link to="/charts" onClick={cerrarMenu}>Álbumes</Link>
+                <Link to="/favorites" onClick={cerrarMenu}>
+                    Discos favoritos {favoritos.length > 0 && <span className="fav-counter">{favoritos.length}</span>}
+                </Link>
+                <Link to="/add" onClick={cerrarMenu}>Añadir nuevo álbum</Link>
+                {usuarioActual ? (
+                    <>
+                        <Link to="/profile" onClick={cerrarMenu}>{usuarioActual.avatar} Mi perfil</Link>
+                        <button onClick={() => { cerrarSesion(); cerrarMenu(); }}>Cerrar sesión</button>
+                    </>
+                ) : (
+                    <Link to="/login" onClick={cerrarMenu}>Iniciar sesión</Link>
+                )}
+            </nav>
         </header>
     );
 }

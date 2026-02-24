@@ -92,6 +92,19 @@
         "alegría",
         "Melancolía"
       ]
+    },
+    {
+      "id": "4849",
+      "title": "Senderos de traición",
+      "artist": "Heroes del silenciop",
+      "year": 1990,
+      "genre": "Rock",
+      "cover": "https://picsum.photos/seed/Senderos%20de%20traici%C3%B3n/300/300",
+      "descriptors": [
+        "Rock",
+        "Hechizo",
+        "Nocturno"
+      ]
     }
   ],
   "genres": [

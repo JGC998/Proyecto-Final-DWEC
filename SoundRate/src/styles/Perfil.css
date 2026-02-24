@@ -1,0 +1,57 @@
+/* Perfil de usuario */
+.perfil-container {
+    padding: 2rem;
+    color: var(--text-main);
+}
+
+.perfil-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.perfil-avatar {
+    font-size: 4rem;
+    line-height: 1;
+}
+
+.perfil-header h1 {
+    margin: 0;
+}
+
+.perfil-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.perfil-section ul {
+    margin-bottom: 2rem;
+    padding-left: 1.2rem;
+}
+
+.perfil-section li {
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+}
+
+/* --- RESPONSIVE MÓVIL --- */
+@media (max-width: 768px) {
+    .perfil-container {
+        padding: 1rem;
+    }
+
+    .perfil-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .perfil-avatar {
+        font-size: 3rem;
+    }
+
+    .perfil-header h1 {
+        font-size: 1.5rem;
+    }
+}

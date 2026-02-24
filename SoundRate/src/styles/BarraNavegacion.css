@@ -156,18 +156,12 @@
     .navbar {
         padding: 0 12px;
         height: 60px;
-        flex-wrap: wrap;
+        position: relative;
     }
 
     .nav-center,
-    .vertical-separator {
-        display: none;
-    }
-
-    .nav-links li:not(:first-child) {
-        display: none;
-    }
-
+    .vertical-separator,
+    .nav-links,
     .add-btn-rym {
         display: none;
     }
@@ -181,8 +175,90 @@
     }
 }
 
-@media (max-width: 480px) {
-    .nav-links {
-        display: none;
+/* Botón hamburguesa: solo visible en móvil */
+.hamburger-btn {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-size: 1.4rem;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s;
+}
+
+.hamburger-btn:hover {
+    background: var(--border-color);
+}
+
+@media (max-width: 768px) {
+    .hamburger-btn {
+        display: flex;
+    }
+}
+
+/* Panel de menú desplegable en móvil */
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: var(--navbar-bg);
+    border-bottom: 1px solid var(--border-color);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    z-index: 999;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: slideDown 0.2s ease-out;
+}
+
+.mobile-menu.open {
+    display: flex;
+}
+
+.mobile-menu a,
+.mobile-menu button {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    background: transparent;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.mobile-menu a:hover,
+.mobile-menu button:hover {
+    color: var(--accent);
+}
+
+.mobile-menu a:last-child,
+.mobile-menu button:last-child {
+    border-bottom: none;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

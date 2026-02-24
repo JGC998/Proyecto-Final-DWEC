@@ -169,6 +169,8 @@ main {
   animation: fadeIn 1s ease-out 0.4s backwards;
   max-width: 1200px;
   margin: 0 auto;
+  min-width: 0;
+  /* Crucial for preventing flex children (Swiper) blowout */
 }
 
 main h1 {
