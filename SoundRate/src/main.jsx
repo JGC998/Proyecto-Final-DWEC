@@ -6,7 +6,10 @@ import Aplicacion from './App.jsx'
 import { ProveedorFavoritos } from './context/ContextoFavoritos.jsx';
 import { ProveedorTema } from './context/ContextoTema.jsx';
 import { ProveedorUsuario } from './context/ContextoUsuario.jsx';
-
+// En src/main.jsx
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation'; // Opcional, si quieres flechas
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ProveedorTema>

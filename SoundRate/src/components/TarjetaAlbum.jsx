@@ -6,18 +6,40 @@ export default function TarjetaAlbum({ album }) {
     const [puntuacionMedia, setPuntuacionMedia] = useState(0);
     const [numResenas, setNumResenas] = useState(0);
 
-    useEffect(() => {
-        fetch(`http://localhost:3000/reviews?albumId=${album.id}`)
-            .then(res => res.json())
-            .then(datos => {
+    // Efecto: al montar la tarjeta, cargamos las reseñas de este álbum
+    useEffect(function () {
+        const url = 'http://localhost:3000/reviews?albumId=' + album.id;
+
+        fetch(url)
+            .then(function (respuesta) {
+                return respuesta.json();
+            })
+            .then(function (datos) {
                 if (datos.length > 0) {
-                    const total = datos.reduce((acc, res) => acc + res.rating, 0);
-                    setPuntuacionMedia((total / datos.length).toFixed(1));
+                    // Calculamos la suma total de puntuaciones con un bucle for
+                    let sumaTotal = 0;
+                    for (let i = 0; i < datos.length; i++) {
+                        sumaTotal = sumaTotal + datos[i].rating;
+                    }
+                    // Calculamos la media y la redondeamos a 1 decimal
+                    const media = sumaTotal / datos.length;
+                    const mediaRedondeada = media.toFixed(1);
+                    setPuntuacionMedia(mediaRedondeada);
                     setNumResenas(datos.length);
                 }
             })
-            .catch(err => console.error("Error cargando notas:", err));
+            .catch(function (error) {
+                console.error("Error cargando notas:", error);
+            });
     }, [album.id]);
+
+    // Preparamos el texto de la puntuación
+    let textoPuntuacion;
+    if (numResenas > 0) {
+        textoPuntuacion = '⭐ ' + puntuacionMedia + ' (' + numResenas + ')';
+    } else {
+        textoPuntuacion = '⭐ --';
+    }
 
     return (
         <motion.div
@@ -28,14 +50,14 @@ export default function TarjetaAlbum({ album }) {
             transition={{ duration: 0.3 }}
             whileHover={{ scale: 1.03, boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }}
         >
-            <Link to={`/album/${album.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link to={'/album/' + album.id} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <img src={album.cover} alt={album.title} style={{ width: '100%', borderRadius: '4px' }} />
                 <h3 style={{ margin: '10px 0 5px 0' }}>{album.title}</h3>
                 <p style={{ margin: '0 0 10px 0', color: 'gray' }}>{album.artist}</p>
             </Link>
 
             <div style={{ fontWeight: 'bold', color: 'var(--accent)' }}>
-                {numResenas > 0 ? `⭐ ${puntuacionMedia} (${numResenas})` : '⭐ --'}
+                {textoPuntuacion}
             </div>
         </motion.div>
     );

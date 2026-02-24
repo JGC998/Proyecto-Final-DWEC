@@ -92,3 +92,11 @@
     border-radius: 4px;
     opacity: 0.9;
 }
+
+.swiper-slide .album-card {
+    height: 400px;
+    /* Ajusta este valor según necesites */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

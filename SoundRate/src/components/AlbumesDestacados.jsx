@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import TarjetaAlbum from './TarjetaAlbum';
@@ -9,10 +9,11 @@ export default function AlbumesDestacados({ albumes }) {
         <section className="top-charts">
             <h2>🔥 Álbumes Mejor Valorados</h2>
             <Swiper
-                modules={[Autoplay, Pagination]}
+                modules={[Autoplay, Pagination, Navigation]}
                 spaceBetween={20}
                 slidesPerView={1}
                 pagination={{ clickable: true }}
+                navigation={true}
                 autoplay={{ delay: 3500, disableOnInteraction: false }}
                 breakpoints={{
                     480: { slidesPerView: 2 },

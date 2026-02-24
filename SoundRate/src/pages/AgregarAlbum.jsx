@@ -9,31 +9,51 @@ export default function AgregarAlbum() {
     const navegar = useNavigate();
     const [generos, setGeneros] = useState([]);
 
-    useEffect(() => {
-        obtenerGeneros().then(setGeneros).catch(console.error);
+    // Efecto: al montar la página, cargamos los géneros
+    useEffect(function () {
+        obtenerGeneros()
+            .then(datos => setGeneros(datos))
+            .catch(error => {
+                console.error(error);
+            });
     }, []);
 
-    const manejarAgregarAlbum = async (datoFormulario) => {
-        const portadaAleatoria = `https://picsum.photos/seed/${encodeURIComponent(datoFormulario.title)}/300/300`;
+    // Función que recibe los datos del formulario y crea el álbum
+    async function manejarAgregarAlbum(datoFormulario) {
+        // Generamos una portada aleatoria con el nombre del álbum
+        const tituloParaURL = encodeURIComponent(datoFormulario.title);
+        const portadaAleatoria = 'https://picsum.photos/seed/' + tituloParaURL + '/300/300';
 
+        // Procesamos los descriptores: separamos por comas y limpiamos espacios
+        const textoDescriptores = datoFormulario.descriptors;
+        const descriptoresSeparados = textoDescriptores.split(',');
+        const descriptoresLimpios = [];
+        for (let i = 0; i < descriptoresSeparados.length; i++) {
+            const descriptor = descriptoresSeparados[i].trim();
+            if (descriptor !== '') {
+                descriptoresLimpios.push(descriptor);
+            }
+        }
+
+        // Creamos el objeto del nuevo álbum
         const nuevoAlbum = {
             title: datoFormulario.title,
             artist: datoFormulario.artist,
             year: parseInt(datoFormulario.year),
             genre: datoFormulario.genre,
             cover: portadaAleatoria,
-            descriptors: datoFormulario.descriptors.split(',').map(etiqueta => etiqueta.trim())
+            descriptors: descriptoresLimpios
         };
 
         try {
             await crearAlbum(nuevoAlbum);
-            toast.success(`"${nuevoAlbum.title}" añadido al catálogo 🎵`);
+            toast.success('"' + nuevoAlbum.title + '" añadido al catálogo 🎵');
             navegar('/charts');
-        } catch (err) {
-            console.error("Error subiendo disco:", err);
+        } catch (error) {
+            console.error("Error subiendo disco:", error);
             toast.error('No se pudo añadir el álbum. Revisa la conexión con la API.');
         }
-    };
+    }
 
     return (
         <div className="form-container">

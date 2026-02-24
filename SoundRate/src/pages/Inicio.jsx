@@ -10,16 +10,22 @@ export default function Inicio() {
     const [albumesDestacados, setAlbumesDestacados] = useState([]);
     const [cargando, setCargando] = useState(true);
 
-    useEffect(() => {
-        obtenerAlbumesDestacados(4)
-            .then(datos => {
+    // Efecto: al montar la página, cargamos más álbumes (ej. 8) para que el carrusel pueda moverse
+    useEffect(function () {
+        obtenerAlbumesDestacados(8)
+            .then(function (datos) {
                 setAlbumesDestacados(datos);
                 setCargando(false);
             })
-            .catch(console.error);
+            .catch(function (error) {
+                console.error(error);
+            });
     }, []);
 
-    if (cargando) return <div className="loading">Cargando charts...</div>;
+    // Mientras se cargan los datos, mostramos un mensaje
+    if (cargando) {
+        return <div className="loading">Cargando charts...</div>;
+    }
 
     return (
         <div className="page-container">

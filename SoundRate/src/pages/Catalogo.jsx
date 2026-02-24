@@ -11,35 +11,57 @@ export default function Catalogo() {
     const [terminoBusqueda, setTerminoBusqueda] = useState('');
     const [ordenSeleccionado, setOrdenSeleccionado] = useState('defecto');
 
-    // 1. Cargar Géneros
-    useEffect(() => {
-        obtenerGeneros().then(setGeneros).catch(console.error);
+    // 1. Cargar los géneros al montar el componente
+    useEffect(function () {
+        obtenerGeneros()
+            .then(datos => setGeneros(datos))
+            .catch(error => console.error(error));
     }, []);
 
-    // 2. Cargar Álbumes (reacciona al cambiar generoSeleccionado)
-    useEffect(() => {
-        obtenerAlbumes(generoSeleccionado).then(setAlbumes).catch(console.error);
+    // 2. Cargar álbumes (se recarga cada vez que cambia el género seleccionado)
+    useEffect(function () {
+        obtenerAlbumes(generoSeleccionado)
+            .then(datos => setAlbumes(datos))
+            .catch(error => console.error(error));
     }, [generoSeleccionado]);
 
-    // 3. Filtrar por texto y ordenar
-    const albumesFiltrados = albumes
-        .filter(album => {
-            if (terminoBusqueda === "") return true;
-            const busquedaMin = terminoBusqueda.toLowerCase();
-            return (
-                album.title.toLowerCase().includes(busquedaMin) ||
-                album.artist.toLowerCase().includes(busquedaMin)
-            );
-        })
-        .sort((a, b) => {
-            switch (ordenSeleccionado) {
-                case 'titulo-asc': return a.title.localeCompare(b.title);
-                case 'titulo-desc': return b.title.localeCompare(a.title);
-                case 'anio-asc': return a.year - b.year;
-                case 'anio-desc': return b.year - a.year;
-                default: return 0;
-            }
-        });
+    // 3. Filtrar por texto de búsqueda
+    const busquedaMin = terminoBusqueda.toLowerCase();
+
+    const albumesFiltradosPorTexto = albumes.filter(album => {
+        // Si el buscador está vacío, .includes("") siempre devuelve true (incluye todo)
+        const coincideTitulo = album.title.toLowerCase().includes(busquedaMin);
+        const coincideArtista = album.artist.toLowerCase().includes(busquedaMin);
+
+        return coincideTitulo || coincideArtista;
+    });
+
+    // 4. Ordenar los álbumes filtrados
+    // Creamos una copia para no modificar el array original
+    const albumesOrdenados = [...albumesFiltradosPorTexto].sort((a, b) => {
+        switch (ordenSeleccionado) {
+            case 'titulo-asc': return a.title.localeCompare(b.title);
+            case 'titulo-desc': return b.title.localeCompare(a.title);
+            case 'anio-asc': return a.year - b.year;
+            case 'anio-desc': return b.year - a.year;
+            default: return 0;
+        }
+    });
+
+    // 5. Preparamos el mensaje de "sin resultados"
+    let mensajeSinResultados = null;
+    if (albumesOrdenados.length === 0) {
+        mensajeSinResultados = (
+            <p style={{ textAlign: 'center', color: 'var(--text-main)', opacity: 0.7, gridColumn: '1/-1' }}>
+                No se encontraron resultados para "{terminoBusqueda}".
+            </p>
+        );
+    }
+
+    // 6. Generamos la lista de tarjetas
+    const listaTarjetas = albumesOrdenados.map(function (album) {
+        return <TarjetaAlbum key={album.id} album={album} />;
+    });
 
     return (
         <div className="charts-container">
@@ -56,16 +78,10 @@ export default function Catalogo() {
             />
 
             <div className="charts-grid">
-                {albumesFiltrados.map(album => (
-                    <TarjetaAlbum key={album.id} album={album} />
-                ))}
+                {listaTarjetas}
             </div>
 
-            {albumesFiltrados.length === 0 && (
-                <p style={{ textAlign: 'center', color: 'var(--text-main)', opacity: 0.7, gridColumn: '1/-1' }}>
-                    No se encontraron resultados para "{terminoBusqueda}".
-                </p>
-            )}
+            {mensajeSinResultados}
         </div>
     );
 }

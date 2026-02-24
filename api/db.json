@@ -29,21 +29,6 @@
       ]
     },
     {
-      "id": "0492",
-      "title": "La paja en la farola",
-      "artist": "Juampa y la Raja",
-      "year": 1998,
-      "genre": "Rock",
-      "cover": "https://picsum.photos/seed/La%20paja%20en%20la%20farola/300/300",
-      "avgRating": 5,
-      "votes": 123462,
-      "descriptors": [
-        "pichancicos",
-        "amor",
-        "melancolía"
-      ]
-    },
-    {
       "id": "e3c7",
       "title": "The Dark Side of the Moon",
       "artist": "Pink Floyd",
@@ -54,36 +39,6 @@
       "votes": 0,
       "descriptors": [
         "Melancolico"
-      ]
-    },
-    {
-      "id": "8559",
-      "title": "El oso y la granja",
-      "artist": "La granja",
-      "year": 1976,
-      "genre": "Electronic",
-      "cover": "https://picsum.photos/seed/El%20oso%20y%20la%20granja/300/300",
-      "avgRating": 0,
-      "votes": 0,
-      "descriptors": [
-        "Locura",
-        "html",
-        "ensamblador"
-      ]
-    },
-    {
-      "id": "9212",
-      "title": "Cathaline",
-      "artist": "Cathaline",
-      "year": 2026,
-      "genre": "Rock",
-      "cover": "https://picsum.photos/seed/Cathaline/300/300",
-      "avgRating": 0,
-      "votes": 0,
-      "descriptors": [
-        "metal",
-        "melodico",
-        "actual"
       ]
     },
     {
@@ -123,6 +78,19 @@
       "descriptors": [
         "Alegre",
         "vivaz"
+      ]
+    },
+    {
+      "id": "4bf5",
+      "title": "Saldremos a la lluvia",
+      "artist": "Manolo García",
+      "year": 2008,
+      "genre": "Rock",
+      "cover": "https://picsum.photos/seed/Saldremos%20a%20la%20lluvia/300/300",
+      "descriptors": [
+        "LLuvia",
+        "alegría",
+        "Melancolía"
       ]
     }
   ],
@@ -167,7 +135,7 @@
       "id": "3471",
       "userId": "u1",
       "userName": "Alex_Rock",
-      "albumId": "0492",
+      "albumId": null,
       "rating": 1,
       "text": "Sin comentarios"
     },
@@ -183,17 +151,9 @@
       "id": "8daf",
       "userId": "u1",
       "userName": "Alex_Rock",
-      "albumId": "8559",
+      "albumId": null,
       "rating": 3,
       "text": "Ojala salieran mas osos"
-    },
-    {
-      "id": "b446",
-      "userId": "7a45",
-      "userName": "Juan",
-      "albumId": "8559",
-      "rating": 4,
-      "text": "asdfasdf"
     },
     {
       "id": "847f",
@@ -223,7 +183,7 @@
       "id": "3409",
       "userId": "e1ea",
       "userName": "Paco",
-      "albumId": "9212",
+      "albumId": null,
       "rating": 5,
       "text": "El puto mejor album de la historia"
     },
@@ -234,6 +194,14 @@
       "albumId": "4e97",
       "rating": 5,
       "text": "Una autentica obra maestra"
+    },
+    {
+      "id": "a39d",
+      "userId": "7a45",
+      "userName": "Juan",
+      "albumId": "4bf5",
+      "rating": 5,
+      "text": "Obra maestraa"
     }
   ],
   "users": [
